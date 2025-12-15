@@ -1,8 +1,18 @@
 def technical_validator(change_description):
+    issues = []
+    score = 80
+
+    if "cloud" in change_description.lower():
+        issues.append("Cloud provider not specified")
+        score -= 20
+
     return {
-        "summary": "Technical validation not implemented yet.",
-        "score": 0,
-        "risk_level": "Unknown",
-        "critical_issues": [],
-        "recommendations": []
+        "summary": "Basic technical validation completed.",
+        "score": score,
+        "risk_level": "Medium" if score < 90 else "Low",
+        "critical_issues": issues,
+        "recommendations": [
+            "Specify cloud provider",
+            "Review backup and rollback strategy"
+        ]
     }
